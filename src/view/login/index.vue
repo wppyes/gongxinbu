@@ -14,7 +14,7 @@
 
       <el-form-item prop="username">
         <span class="svg-container">
-          <svg-icon icon-class="user"/>
+          <svg-icon icon-class="user" />
         </span>
         <el-input
           v-model="loginForm.username"
@@ -27,7 +27,7 @@
 
       <el-form-item prop="password">
         <span class="svg-container">
-          <svg-icon icon-class="password"/>
+          <svg-icon icon-class="password" />
         </span>
         <el-input
           v-model="loginForm.password"
@@ -38,14 +38,14 @@
           @keyup.enter.native="handleLogin"
         />
         <span class="show-pwd" @click="showPwd">
-          <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"/>
+          <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
         </span>
       </el-form-item>
       <el-button
         id="TencentCaptcha"
         type="primary"
-        style="width:100%;margin-bottom:30px;" 
-        @click="handleLogin"       
+        style="width:100%;margin-bottom:30px;"
+        @click="handleLogin"
       >登录</el-button>
     </el-form>
   </div>
@@ -88,8 +88,7 @@ export default {
       immediate: true
     }
   },
-  mounted() {
-  },
+  mounted() {},
   methods: {
     showPwd() {
       if (this.passwordType === "password") {
@@ -101,11 +100,11 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          var cap=new TencentCaptcha('2029555843', res=> {     
+          var cap = new TencentCaptcha("2029555843", res => {
             var data = this.$qs.stringify({
               Name: this.loginForm.username,
               Pwd: this.loginForm.password,
-              ticket: res.ticket, 
+              ticket: res.ticket,
               randstr: res.randstr
             });
             request({
@@ -122,15 +121,15 @@ export default {
                 localStorage.setItem("SiteKey", response.SiteKey + ",0");
                 var modelobj = JSON.stringify(tempdata);
                 localStorage.setItem("logintemp", modelobj);
-                
+
                 this.loading = false;
-				if(this.$route.query.redirect == location.hostname){
+                if (this.$route.query.redirect == location.hostname) {
                   this.$router.go(-1);
-                }else{
+                } else {
                   this.$router.push({
-                    path: "/console"
+                    path: response.Path
                   });
-                }    
+                }
               }
             });
           });
@@ -188,6 +187,7 @@ $cursor: #fff;
       height: 47px;
       caret-color: $cursor;
       &:-webkit-autofill {
+        box-shadow: 0 0 0px 1000px $bg inset !important;
         -webkit-box-shadow: 0 0 0px 1000px $bg inset !important;
         -webkit-text-fill-color: $cursor !important;
       }

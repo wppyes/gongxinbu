@@ -3,10 +3,8 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import Layout from '@/view/layout/Layout'
-import activityRouter from './modules/activity'
-import newsRouter from './modules/news'
-import noticeRouter from './modules/notice'
-import serviceRouter from './modules/service'
+import managerRouter from './modules/manager'
+import h5Router from './modules/h5'
 export const constantRouterMap = [
   {
     path: '/',
@@ -55,10 +53,8 @@ export const constantRouterMap = [
       }
     ]
   },
-  activityRouter,
-  newsRouter,
-  noticeRouter,
-  serviceRouter
+  managerRouter,
+  h5Router
 ]
 const router = new Router({
   // mode: 'history', // require service support
